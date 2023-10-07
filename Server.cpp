@@ -10,7 +10,7 @@
 #include "json/json.h"
 #include <json/value.h>
 #include "json/reader.h"
-#define PORT     576 
+#define PORT     743 
 #define MAXLINE 16384 
    
 // Driver code 

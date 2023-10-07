@@ -8,7 +8,7 @@ using namespace std;
 
 #define SERVER "64.226.99.105"  // or "localhost" - ip address of UDP server
 #define BUFLEN 16384  // max length of answer
-#define PORT 576  // the port on which to listen for incoming data
+#define PORT 743  // the port on which to listen for incoming data
 
 int main()
 {
