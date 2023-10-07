@@ -1,0 +1,2 @@
+g++ -o Client Client.cpp  -I ..\..\include  -L ..\..\lib\ -static -static-libgcc -static-libstdc++  -std=c++20
+g++ -o Server Server.cpp  -I ..\..\include -I ./include -L ..\..\lib\ -static -static-libgcc -static-libstdc++ -ljsoncpp -lsqlite3 -std=c++20

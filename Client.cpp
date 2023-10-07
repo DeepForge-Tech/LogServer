@@ -76,6 +76,7 @@ int main()
         n = recvfrom(sockfd, (char *)buffer, MAXLINE,
                     MSG_WAITALL, (struct sockaddr *)&servaddr,
                     &len);
+        cout << buffer << endl;
         buffer[n] = '\0';
         sleep(1);
     }
