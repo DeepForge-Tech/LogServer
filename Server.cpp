@@ -23,8 +23,7 @@ void Server::SetInformation()
 
 void Server::BindSocket()
 {
-    if (bind(sockfd, (const struct sockaddr *)&servaddr,
-             sizeof(servaddr)) < 0)
+    if (bind(sockfd, (const struct sockaddr *)&servaddr,sizeof(servaddr)) < 0)
     {
         perror("bind failed");
         exit(EXIT_FAILURE);
