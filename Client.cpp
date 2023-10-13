@@ -2,9 +2,6 @@
 
 using namespace LogClient;
 
-
-
-// Driver code
 int main()
 {
     Client client;
