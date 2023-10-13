@@ -43,41 +43,37 @@ namespace LogClient
             servaddr.sin_port = htons(PORT);
             servaddr.sin_addr.s_addr = inet_addr("64.226.99.105");
         }
-        void SendMessage(char message[MAXLINE])
-        {
-            const char *new_message = message;
-            sendto(sockfd, data, strlen(data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
-        }
-        void GetInformation()
-        {
-            n = recvfrom(sockfd, (char *)buffer, MAXLINE, MSG_WAITALL, (struct sockaddr *)&servaddr, &len)
-            buffer[n] = '\0';
-        }
-        char OpenJSON(string filename)
+        void SendJSON(string path)
         {
             FILE *fp;
             char data[MAXLINE];
-            if ((fp = fopen(filename.c_str(), "rb")) == NULL)
+            if ((fp = fopen(path.c_str(), "rb")) == NULL)
             {
                 printf("Cannot open file.\n");
                 exit(1);
             }
             fread(data, sizeof(char), MAXLINE, fp);
             fclose(fp);
-            return data;
+            // const char *new_message = message;
+            sendto(sockfd, data, strlen(data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
+        }
+        void GetInformation()
+        {
+            n = recvfrom(sockfd, (char *)buffer, MAXLINE, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);
+            buffer[n] = '\0';
         }
         void CloseSocket()
         {
             close(sockfd);
         }
-        Server()
+        Client()
         {
             CreateSocket();
             SetInformation();
         }
-        ~Server()
+        ~Client()
         {
-            CloseSocket()
+            CloseSocket();
         }
 
     private:
