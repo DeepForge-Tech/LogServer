@@ -1,6 +1,10 @@
-#include "Client.hpp"
-
-using namespace LogClient;
+#if defined(__linux__) || __APPLE__
+#include "Client_UNIX.hpp"
+using namespace UNIX;
+#elif _WIN32
+#include "Client_POSIX.hpp"
+using namespace POSIX;
+#endif
 
 int main()
 {

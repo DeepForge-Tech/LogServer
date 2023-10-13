@@ -10,19 +10,18 @@
 #include <fstream>
 
 #define PORT 743
-#define MAXLINE 16384
+#define BUFFER_MAX_LENGHT 16384
+#define IP_ADDRESS "64.226.99.105"
 
 using namespace std;
-
-namespace LogClient
+namespace UNIX
 {
     int sockfd;
-    char buffer[MAXLINE];
+    char buffer[BUFFER_MAX_LENGHT];
     struct sockaddr_in servaddr;
     int n;
     socklen_t len;
     bool isOpen = false;
-    string IP_ADDRESS = "64.226.99.105";
 
     class Client
     {
@@ -40,8 +39,7 @@ namespace LogClient
             }
             catch (const std::exception &e)
             {
-                throw runtime_error("Error creating socket")
-                // std::cerr << e.what() << '\n';
+                throw runtime_error("Error creating socket");
             }
             memset(&servaddr, 0, sizeof(servaddr));
             isOpen = true;
@@ -57,25 +55,25 @@ namespace LogClient
         {
             /* This code is responsible for reading the contents of a file specified by the `path` variable and storing it in the `data` array. */
             FILE *fp;
-            char data[MAXLINE];
+            char data[BUFFER_MAX_LENGHT];
             if ((fp = fopen(path.c_str(), "rb")) == NULL)
             {
                 printf("Cannot open file.\n");
                 exit(1);
             }
-            fread(data, sizeof(char), MAXLINE, fp);
+            fread(data, sizeof(char), BUFFER_MAX_LENGHT, fp);
             fclose(fp);
             // const char *new_message = message;
             sendto(sockfd, data, strlen(data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
         }
-        void SendMessage(string message)
-        {
-            const char *new_message = message.c_str();
-            sendto(sockfd,new_message,strlen(new_message),(const stuct sockaddr_in *)&serveraddr,sizeof(servaddr));
-        }
+        // void SendMessage(string message)
+        // {
+        //     const char *new_message = message.c_str();
+        //     sendto(sockfd,new_message,strlen(new_message),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));
+        // }
         void GetInformation()
         {
-            n = recvfrom(sockfd, (char *)buffer, MAXLINE, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);
+            n = recvfrom(sockfd, (char *)buffer, BUFFER_MAX_LENGHT, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);
             buffer[n] = '\0';
         }
         void CloseSocket()
