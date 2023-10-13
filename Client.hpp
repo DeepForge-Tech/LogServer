@@ -21,6 +21,7 @@ namespace LogClient
     struct sockaddr_in servaddr;
     int n;
     socklen_t len;
+    bool isOpen = false;
 
     class Client
     {
@@ -35,6 +36,7 @@ namespace LogClient
             }
 
             memset(&servaddr, 0, sizeof(servaddr));
+            isOpen = true;
         }
         void SetInformation()
         {
@@ -64,7 +66,11 @@ namespace LogClient
         }
         void CloseSocket()
         {
-            close(sockfd);
+            if (isOpen == true)
+            {
+                close(sockfd);
+                isOpen = false;
+            }
         }
         Client()
         {
