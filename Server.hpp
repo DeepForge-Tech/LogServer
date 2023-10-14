@@ -41,7 +41,7 @@ namespace LogServer
         {
             database.open(&DatabasePath);
         }
-        ~Server();
+        // ~Server();
     private:
     };
 }
