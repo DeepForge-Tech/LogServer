@@ -30,7 +30,7 @@ namespace LogServer
     class Server
     {
     public:
-        int JSON_to_DB(char JSON_LOGS[MAX_SIZE]);
+        int JSON_to_DB(Json::Value JSON_LOGS);
         void CreateSocket();
         void SetInformation();
         void BindSocket();
