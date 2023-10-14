@@ -25,7 +25,9 @@ namespace LogServer
     socklen_t len;
     int n;
     const char* SUCCESS = "Information added successfully";
+    string ProjectDir = std::filesystem::current_path().generic_string();
     Database database;
+    string DatabasePath = ProjectDir + "/DB/Logs.db";
 
     class Server
     {
@@ -37,7 +39,7 @@ namespace LogServer
         void Start();
         Server()
         {
-            database.open(to_string("./DB/Logs.db"));
+            database.open(&DatabasePath);
         }
         ~Server();
     private:
