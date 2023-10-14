@@ -37,7 +37,7 @@ namespace LogServer
         void Start();
         Server()
         {
-            database.open("./DB/Logs.db");
+            database.open(to_string("./DB/Logs.db"));
         }
         ~Server();
     private:
