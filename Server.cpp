@@ -91,7 +91,7 @@ void Server::Start()
         try
         {   
             string buffer_str = &buffer[0];
-            if (buffer_str.rfind("{", 0) == 0) { // pos=0 limits the search to the prefix
+            if (buffer_str.rfind("{", 0) == 0 && buffer_str.rfind("{", buffer_str.length() - 1)) { // pos=0 limits the search to the prefix
             // s starts with prefix
                 cout << buffer_str.back() << endl;
             }
