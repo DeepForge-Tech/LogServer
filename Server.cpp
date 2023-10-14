@@ -46,7 +46,7 @@ void Server::BindSocket()
 {
     try
     {
-        bind(sockfd, (const struct sockaddr *)&servaddr,sizeof(servaddr))
+        bind(sockfd, (const struct sockaddr *)&servaddr,sizeof(servaddr));
     }
     catch(const std::exception& error)
     {
