@@ -94,7 +94,7 @@ void Server::Start()
             {
                 cout << "123456789" << endl;
             }
-            cout << &buffer[0] << endl;
+            cout << buffer[0] << endl;
             /* `Json::Value JSON_LOGS;` is declaring a variable named `JSON_LOGS` of type `Json::Value`.
             This variable is used to store a JSON object. */
             Json::Value JSON_LOGS;
