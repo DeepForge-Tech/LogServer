@@ -90,7 +90,7 @@ void Server::Start()
         buffer[n] = '\0';
         try
         {
-            if (buffer[0] == "{" && (end(buffer)-begin(buffer) - 1) == "}") cout << end(arr)-begin(arr) << endl;
+            if (buffer[0] == "{" && (end(buffer)-begin(buffer) - 1) == "}") cout << "123456789" << endl;
             /* `Json::Value JSON_LOGS;` is declaring a variable named `JSON_LOGS` of type `Json::Value`.
             This variable is used to store a JSON object. */
             Json::Value JSON_LOGS;
