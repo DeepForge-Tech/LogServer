@@ -9,7 +9,7 @@ void Server::CreateSocket()
 {   
     try
     {
-        sockfd = socket(AF_INET, SOCK_DGRAM, 0)
+        sockfd = socket(AF_INET, SOCK_DGRAM, 0);
         /* `memset(&servaddr, 0, sizeof(servaddr));` is a function that sets the memory of the `servaddr`
         structure to zero. It takes three arguments: the address of the structure (`&servaddr`), the
         value to set (0), and the size of the structure (`sizeof(servaddr)`). */
