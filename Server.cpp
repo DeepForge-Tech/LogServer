@@ -29,6 +29,12 @@ void Server::BindSocket()
         exit(EXIT_FAILURE);
     }
 }
+int Server::JSON_to_DB(Json::Value JSON_LOGS)
+{
+    database.InsertLogInformationToTable("Logs",JSON_LOGS["Architecture"].asString(),
+        JSON_LOGS["OS_NAME"].asString(),JSON_LOGS["Channel"].asString(),JSON_LOGS["FunctionName"].asString(),
+        JSON_LOGS["LogText"].asString());
+}
 
 void Server::Start()
 {
@@ -43,10 +49,11 @@ void Server::Start()
                      MSG_WAITALL, (struct sockaddr *)&cliaddr,
                      &len);
         buffer[n] = '\0';
-        Json::Value root;
+        Json::Value JSON_LOGS;
         Json::Reader reader;
-        reader.parse(buffer, root);
-        cout << root["test"].asString() << endl;
+        reader.parse(buffer, JSON_LOGS);
+        JSON_to_DB(JSON_LOGS);
+        cout << JSON_LOGS["test"].asString() << endl;
         printf("Client: %s\n", buffer);
         sendto(sockfd, (const char *)SUCCESS, strlen(SUCCESS),MSG_CONFIRM, (const struct sockaddr *)&cliaddr,len);
         cout << "Hello message sent." << endl;

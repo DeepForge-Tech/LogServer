@@ -25,16 +25,21 @@ namespace LogServer
     socklen_t len;
     int n;
     const char* SUCCESS = "Information added successfully";
+    Database database;
+
     class Server
     {
     public:
-        // Server();
-        // ~Server();
-        int JSON_to_DB(char[MAX_SIZE]);
+        int JSON_to_DB(char JSON_LOGS[MAX_SIZE]);
         void CreateSocket();
         void SetInformation();
         void BindSocket();
         void Start();
+        Server()
+        {
+            database.open("./DB/Logs.db");
+        }
+        ~Server();
     private:
     };
 }

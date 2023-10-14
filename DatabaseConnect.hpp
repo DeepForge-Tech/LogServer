@@ -76,6 +76,7 @@ namespace DB
         int RemoveApplicationsFromTable(string NameTable, string NameApp);
         int AddApplications(string Tables[]);
         int RemoveApplications(string Tables[]);
+        int InsertLogInformationToTable(string NameTable,string Architecture,string OS_NAME,string Channel,string FunctionName,string LogText);
         // Method of make string to upper
         string to_upper(string sentence)
         {
