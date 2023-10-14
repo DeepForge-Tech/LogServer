@@ -1,8 +1,8 @@
 {
     "test":"1111",
-    "Architeture":"amd64",
+    "Architecture":"amd64",
     "Channel":"stable\\latest",
     "OS_NAME":"Windows",
-    "FuntionName":"Download",
+    "FunctionName":"Download",
     "LogText":"Error download"
 }
