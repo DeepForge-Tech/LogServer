@@ -90,12 +90,12 @@ void Server::Start()
         buffer[n] = '\0';
         try
         {   
-            string start_symbol = &buffer[0];
-            if (start_symbol.rfind("{", 0) == 0) { // pos=0 limits the search to the prefix
+            string buffer_str = &buffer[0];
+            if (buffer_str.rfind("{", 0) == 0) { // pos=0 limits the search to the prefix
             // s starts with prefix
-                cout << "dfdfdf" << endl;
+                cout << buffer_str.back() << endl;
             }
-            cout << start_symbol << endl;
+            cout << buffer_str << endl;
             /* `Json::Value JSON_LOGS;` is declaring a variable named `JSON_LOGS` of type `Json::Value`.
             This variable is used to store a JSON object. */
             Json::Value JSON_LOGS;
