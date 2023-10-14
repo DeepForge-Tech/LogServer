@@ -89,12 +89,13 @@ void Server::Start()
             in C++. */
         buffer[n] = '\0';
         try
-        {
-            if (&buffer[0] == "{")
+        {   
+            char start_symbol = buffer[0];
+            if (&start_symbol == "{")
             {
                 cout << "123456789" << endl;
             }
-            cout << buffer[0] << endl;
+            cout << start_symbol << endl;
             /* `Json::Value JSON_LOGS;` is declaring a variable named `JSON_LOGS` of type `Json::Value`.
             This variable is used to store a JSON object. */
             Json::Value JSON_LOGS;
