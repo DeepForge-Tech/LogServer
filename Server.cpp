@@ -23,7 +23,6 @@ void Server::CreateSocket()
     catch (const std::exception &error)
     {
         std::cerr << error.what() << std::endl;
-        throw runtime_error("❌ Error creating socket.");
     }
 }
 
@@ -49,7 +48,6 @@ void Server::BindSocket()
     catch (const std::exception &error)
     {
         std::cerr << error.what() << std::endl;
-        throw runtime_error("❌ Error binding socket.");
     }
 }
 /**
@@ -89,40 +87,41 @@ void Server::Start()
             in C++. */
         buffer[n] = '\0';
         try
-        {   
+        {
             string buffer_str = &buffer[0];
-            if (buffer_str.rfind("{", 0) == 0 && buffer_str.rfind("{", buffer_str.length() - 1)) { // pos=0 limits the search to the prefix
-            // s starts with prefix
-                cout << buffer_str.back() << endl;
+            if (buffer_str.rfind("{", 0) == 0 && buffer_str.rfind("{", buffer_str.length() - 1))
+            {
+                /* `Json::Value JSON_LOGS;` is declaring a variable named `JSON_LOGS` of type `Json::Value`.
+                This variable is used to store a JSON object. */
+                Json::Value JSON_LOGS;
+                /* The line `Json::Reader reader;` is declaring a variable named `reader` of type
+                `Json::Reader`. This variable is used to parse JSON data. The `Json::Reader` class provides
+                functions to read and parse JSON data from a string or input stream. In this code, it is
+                used to parse the data received from the socket into a `Json::Value` object named
+                `JSON_LOGS`. */
+                Json::Reader reader;
+                /* The line `reader.parse(buffer, JSON_LOGS);` is parsing the data stored in the `buffer` array
+                and storing it in the `JSON_LOGS` variable. */
+                reader.parse(buffer, JSON_LOGS);
+                /* The `JSON_to_DB(JSON_LOGS)` function takes a JSON object containing log information and
+                inserts it into a database table. It calls the `InsertLogInformationToTable` function of the
+                `database` object, passing the log information as parameters. The function returns the
+                result of the database operation. */
+                int RESULT = JSON_to_DB(JSON_LOGS);
+                printf("Client: %s\n", buffer);
+                /* The line `sendto(sockfd, (const char *)SUCCESS, strlen(SUCCESS), MSG_CONFIRM, (const struct
+                sockaddr *)&cliaddr, len);` is sending a response message to the client. */
+                if (RESULT == 0)
+                    sendto(sockfd, (const char *)SUCCESS, strlen(SUCCESS), MSG_CONFIRM, (const struct sockaddr *)&cliaddr, len);
             }
-            cout << buffer_str << endl;
-            /* `Json::Value JSON_LOGS;` is declaring a variable named `JSON_LOGS` of type `Json::Value`.
-            This variable is used to store a JSON object. */
-            Json::Value JSON_LOGS;
-            /* The line `Json::Reader reader;` is declaring a variable named `reader` of type
-            `Json::Reader`. This variable is used to parse JSON data. The `Json::Reader` class provides
-            functions to read and parse JSON data from a string or input stream. In this code, it is
-            used to parse the data received from the socket into a `Json::Value` object named
-            `JSON_LOGS`. */
-            Json::Reader reader;
-            /* The line `reader.parse(buffer, JSON_LOGS);` is parsing the data stored in the `buffer` array
-            and storing it in the `JSON_LOGS` variable. */
-            reader.parse(buffer, JSON_LOGS);
-            /* The `JSON_to_DB(JSON_LOGS)` function takes a JSON object containing log information and
-            inserts it into a database table. It calls the `InsertLogInformationToTable` function of the
-            `database` object, passing the log information as parameters. The function returns the
-            result of the database operation. */
-            int RESULT = JSON_to_DB(JSON_LOGS);
-            printf("Client: %s\n", buffer);
-            /* The line `sendto(sockfd, (const char *)SUCCESS, strlen(SUCCESS), MSG_CONFIRM, (const struct
-            sockaddr *)&cliaddr, len);` is sending a response message to the client. */
-            if (RESULT == 0)
-                sendto(sockfd, (const char *)SUCCESS, strlen(SUCCESS), MSG_CONFIRM, (const struct sockaddr *)&cliaddr, len);
+            else
+            {
+                cout << buffer << endl;
+            }
         }
         catch (const std::exception &error)
         {
             std::cerr << error.what() << '\n';
-            // throw
         }
     }
 }
