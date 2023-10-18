@@ -35,7 +35,6 @@ if exist .\build\Windows (
         echo -- Error in project build.
     )
 )
-
 echo ==================================
 
 if arg_1=="-autostart" or arg_1=="-AutoStart" or arg_1=="-Autostart" (
