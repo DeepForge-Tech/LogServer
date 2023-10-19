@@ -1,7 +1,0 @@
-{
-    "Architecture":"amd64",
-    "Channel":"stable\\latest",
-    "OS_NAME":"Windows",
-    "FunctionName":"Download",
-    "LogText":"Error download"
-}
