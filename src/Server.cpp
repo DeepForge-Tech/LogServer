@@ -60,6 +60,7 @@ void Server::BindSocket()
  */
 int Server::JSON_to_DB(Json::Value JSON_LOGS)
 {
+    JSON_LOGS = JSON_LOGS["Entries"][0];
     int RESULT = database.InsertLogInformationToTable("Logs", JSON_LOGS["Architecture"].asString(),
                                                       JSON_LOGS["OS_NAME"].asString(), JSON_LOGS["Channel"].asString(), JSON_LOGS["FunctionName"].asString(),
                                                       JSON_LOGS["LogText"].asString());
