@@ -76,11 +76,11 @@ namespace UNIX
             /* The `sendto()` function is used to send data over a UDP socket connection. In this specific code snippet, it is sending the contents of the `data` string to the server specified by the `servaddr` structure. The parameters of the `sendto()` function are as follows: */
             sendto(sockfd, data, strlen(data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
         }
-        void SEND_TEXT_MESSAGE(string message)
-        {
-            /* The line `sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));` is sending a message over a UDP socket connection. */
-            sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));
-        }
+        // void SEND_TEXT_MESSAGE(string message)
+        // {
+        //     /* The line `sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));` is sending a message over a UDP socket connection. */
+        //     sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));
+        // }
         void GetInformation()
         {
             n = recvfrom(sockfd, (char *)buffer, BUFFER_MAX_LENGHT, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);
