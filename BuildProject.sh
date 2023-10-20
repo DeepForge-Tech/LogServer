@@ -162,6 +162,9 @@ case "${unameOut}" in
 	Linux*)		sudo g++ -o ./build/$os/Server ./src/Server.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -lsqlite3 -std=c++2a -Bstatic;;
 esac
 echo "==> Build of server finished"
+echo "==> Copying folder of DB to build/$os ..."
+sudo cp -R ./src/DB ./build/$os/DB
+echo "==> Copying folder of DB to build/$os was successfully."
 cd build
 cd $os
 case "${unameOut}" in
