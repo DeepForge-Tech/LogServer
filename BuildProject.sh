@@ -165,6 +165,7 @@ echo "==> Build of server finished"
 echo "==> Copying folder of DB to build/$os ..."
 sudo cp -R ./src/DB ./build/$os/DB
 echo "==> Copying folder of DB to build/$os was successfully."
+echo "==> Starting Server"
 cd build
 cd $os
 case "${unameOut}" in
