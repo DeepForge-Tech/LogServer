@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include "json/json.h"
 #include <iostream>
 #include <fstream>
 
@@ -41,6 +42,7 @@ namespace UNIX
             {
                 throw runtime_error("Error creating socket");
             }
+            /* `memset(&servaddr, 0, sizeof(servaddr));` is used to set all the bytes of the `servaddr` structure to zero. This is done to ensure that there are no garbage values present in the structure before assigning values to its members. */
             memset(&servaddr, 0, sizeof(servaddr));
             isOpen = true;
         }
@@ -51,7 +53,14 @@ namespace UNIX
             servaddr.sin_port = htons(PORT);
             servaddr.sin_addr.s_addr = inet_addr(IP_ADDRESS);
         }
-        void SendJSON(string path)
+        /* The `SEND_JSON_ARRAY` function is sending a JSON array over a UDP socket connection. */
+        void SEND_JSON_ARRAY(string data)
+        {
+            /* The `sendto()` function is used to send data over a UDP socket connection. In this specific code snippet, it is sending the contents of the `data` string to the server specified by the `servaddr` structure. */
+            sendto(sockfd, data.c_str(), strlen(data.c_str()), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
+        }
+        /* The `SEND_JSON_FILE` function is responsible for reading the contents of a file specified by the `path` variable and sending it over a UDP socket connection. */
+        void SEND_JSON_FILE(string path)
         {
             /* This code is responsible for reading the contents of a file specified by the `path` variable and storing it in the `data` array. */
             FILE *fp;
@@ -63,14 +72,14 @@ namespace UNIX
             }
             fread(data, sizeof(char), BUFFER_MAX_LENGHT, fp);
             fclose(fp);
-            // const char *new_message = message;
+            /* The `sendto()` function is used to send data over a UDP socket connection. In this specific code snippet, it is sending the contents of the `data` string to the server specified by the `servaddr` structure. The parameters of the `sendto()` function are as follows: */
             sendto(sockfd, data, strlen(data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
         }
-        // void SendMessage(string message)
-        // {
-        //     const char *new_message = message.c_str();
-        //     sendto(sockfd,new_message,strlen(new_message),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));
-        // }
+        void SEND_TEXT_MESSAGE(string message)
+        {
+            /* The line `sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));` is sending a message over a UDP socket connection. */
+            sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));
+        }
         void GetInformation()
         {
             n = recvfrom(sockfd, (char *)buffer, BUFFER_MAX_LENGHT, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);

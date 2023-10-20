@@ -52,8 +52,13 @@ namespace POSIX
             server.sin_port = htons(PORT);
             server.sin_addr.S_un.S_addr = inet_addr(IP_ADDRESS);
         }
-
-        void SendJSON(string path)
+        /* The `SEND_JSON_ARRAY` function is sending a JSON array over a UDP socket to a specified server. */
+        void SEND_JSON_ARRAY(string data)
+        {
+            /* The line `sendto(client_socket, data.c_str(), strlen(data.c_str()), 0, (sockaddr *)&server, sizeof(sockaddr_in));` is sending data over a UDP socket to a specified server. */
+            sendto(client_socket, data.c_str(), strlen(data.c_str()), 0, (sockaddr *)&server, sizeof(sockaddr_in));
+        }
+        void SEND_JSON_FILE(string path)
         {
             /* This code is responsible for reading the contents of a file specified by the `path` variable and storing it in the `data` array. */
             FILE *fp;
@@ -71,8 +76,8 @@ namespace POSIX
 
         void SendTextMessage(string message)
         {
-            const char *new_message = message.c_str();
-            sendto(client_socket, new_message, strlen(new_message), 0, (sockaddr*)&server, sizeof(sockaddr_in));
+            /* The line `sendto(client_socket, new_message, strlen(new_message), 0, (sockaddr*)&server, sizeof(sockaddr_in));` is sending a text message over a UDP socket to a specified server. */
+            sendto(client_socket, message.c_str(), strlen(message.c_str()), 0, (sockaddr*)&server, sizeof(sockaddr_in));
         }
 
         /* The `GetInformation()` function is responsible for receiving information from the server over the UDP socket. */
@@ -90,6 +95,7 @@ namespace POSIX
             if (isOpen == true)
             {
                 closesocket(client_socket);
+                /* `WSACleanup();` is a function that is used to clean up and terminate the use of the Winsock library. It is called after the client is done using the Winsock library and wants to release any resources that were allocated during the initialization of the library. This function should be called once for every successful call to `WSAStartup()`. */
                 WSACleanup();
             }
         }
