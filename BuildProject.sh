@@ -165,8 +165,8 @@ echo "==> Build of server finished"
 cd build
 cd $os
 case "${unameOut}" in
-	Darwin*) 	./Client;;
-	Linux*)		sudo ./Client;;
+	Darwin*) 	./Server;;
+	Linux*)		sudo ./Server;;
 esac
 
 #echo "=================================="
