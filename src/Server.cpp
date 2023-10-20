@@ -122,7 +122,7 @@ void Server::Start()
         }
         catch (const std::exception &error)
         {
-            std::cerr << error.what() << '\n';
+            cerr << error.what() << '\n';
         }
     }
 }

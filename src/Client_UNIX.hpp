@@ -84,6 +84,7 @@ namespace UNIX
         // }
         void GetInformation()
         {
+            /* The line `n = recvfrom(sockfd, (char *)buffer, BUFFER_MAX_LENGHT, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);` is receiving data from a UDP socket connection. */
             n = recvfrom(sockfd, (char *)buffer, BUFFER_MAX_LENGHT, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);
             buffer[n] = '\0';
         }

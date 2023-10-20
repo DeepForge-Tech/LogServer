@@ -10,9 +10,19 @@ using namespace POSIX;
 int main()
 {
     Client client;
-    // char *data = client.OpenJSON("./toJSON.json");
     string ProjectDir = std::filesystem::current_path().generic_string();
-    string JSON_Path = ProjectDir + "/toJson.json";
-    client.SEND_JSON_FILE(JSON_Path);
+    string JSON_STRING = R"({
+        "Entries":
+        [
+        {
+        "Architecture":"amd64",
+        "Channel":" "stable\\latest",
+        "OS_NAME":"Windows",
+        "FunctionName":"Download",
+        "LogText":"LogText",
+        }
+        ]
+    })";
+    client.SEND_JSON_ARRAY(JSON_STRING);
     return 0;
 }
