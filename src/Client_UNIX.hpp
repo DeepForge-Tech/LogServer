@@ -59,7 +59,7 @@ namespace UNIX
             char new_data[BUFFER_MAX_LENGHT];
             strcpy(new_data,data.c_str());
             /* The `sendto()` function is used to send data over a UDP socket connection. In this specific code snippet, it is sending the contents of the `data` string to the server specified by the `servaddr` structure. */
-            sendto(sockfd, new_data, strlen(new_data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
+            sendto(sockfd, new_data, strlen(new_data), 0, (const struct sockaddr *)&servaddr, sizeof(servaddr));
         }
         /* The `SEND_JSON_FILE` function is responsible for reading the contents of a file specified by the `path` variable and sending it over a UDP socket connection. */
         void SEND_JSON_FILE(string path)
@@ -75,7 +75,7 @@ namespace UNIX
             fread(data, sizeof(char), BUFFER_MAX_LENGHT, fp);
             fclose(fp);
             /* The `sendto()` function is used to send data over a UDP socket connection. In this specific code snippet, it is sending the contents of the `data` string to the server specified by the `servaddr` structure. The parameters of the `sendto()` function are as follows: */
-            sendto(sockfd, data, strlen(data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
+            sendto(sockfd, data, strlen(data), 0, (const struct sockaddr *)&servaddr, sizeof(servaddr));
         }
         // void SEND_TEXT_MESSAGE(string message)
         // {
