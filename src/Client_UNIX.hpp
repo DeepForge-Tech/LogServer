@@ -56,7 +56,8 @@ namespace UNIX
         /* The `SEND_JSON_ARRAY` function is sending a JSON array over a UDP socket connection. */
         void SEND_JSON_ARRAY(string data)
         {
-            char new_data[BUFFER_MAX_LENGHT] = data.c_str();
+            char new_data[BUFFER_MAX_LENGHT];
+            strcpy(new_data,data.c_str());
             /* The `sendto()` function is used to send data over a UDP socket connection. In this specific code snippet, it is sending the contents of the `data` string to the server specified by the `servaddr` structure. */
             sendto(sockfd, new_data, strlen(new_data), MSG_CONFIRM, (const struct sockaddr *)&servaddr, sizeof(servaddr));
         }
