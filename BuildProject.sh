@@ -152,8 +152,8 @@ mkdir $os
 cd ..
 echo "==> Building client"
 case "${unameOut}" in
-	Darwin*) 	sudo clang++ -o ./build/$os/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -lsqlite3 -std=c++2a -Bstaticc;;
-	Linux*)		sudo g++ -o ./build/$os/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -lsqlite3 -std=c++2a -Bstatic;;
+	Darwin*) 	sudo clang++ -o ./build/$os/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstaticc;;
+	Linux*)		sudo g++ -o ./build/$os/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic;;
 esac
 echo "==> Build of client finished"
 echo "==> Building server"

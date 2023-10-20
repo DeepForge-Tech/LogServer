@@ -18,7 +18,7 @@ set arg_1 = %1
 echo -- Building project
 if exist .\build\Windows (
     if ERRORLEVEL 0 (
-        g++ -o .\build\Windows\Client.exe .\src\Client.cpp -lurlmon -I ..\..\include  -L ..\..\lib\ -I .\src\include -L .\src\lib -lws2_32 -static -static-libgcc -static-libstdc++  -lwinmm -std=c++20
+        g++ -o .\build\Windows\Client.exe .\src\Client.cpp -lurlmon -I ..\..\include  -L ..\..\lib\ -I .\src\include -L .\src\lib -lws2_32 -static -static-libgcc -static-libstdc++ -ljsoncpp -lwinmm -std=c++20
         echo -- Build of project finished
     ) else (
         echo -- Error in project build.
@@ -29,7 +29,7 @@ if exist .\build\Windows (
     mkdir Windows
     cd ..
     if ERRORLEVEL 0 (
-        g++ -o .\build\Windows\Client.exe .\src\Client.cpp -lurlmon -I ..\..\include  -L ..\..\lib\ -I .\src\include -L .\src\lib -lws2_32 -static -static-libgcc -static-libstdc++  -lwinmm -std=c++20
+        g++ -o .\build\Windows\Client.exe .\src\Client.cpp -lurlmon -I ..\..\include  -L ..\..\lib\ -I .\src\include -L .\src\lib -lws2_32 -static -static-libgcc -static-libstdc++ -ljsoncpp -lwinmm -std=c++20
         echo -- Build of project finished
     ) else (
         echo -- Error in project build.
