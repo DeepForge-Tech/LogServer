@@ -166,12 +166,12 @@ echo "==> Copying folder of DB to build/$os ..."
 sudo cp -R ./src/DB ./build/$os/DB
 echo "==> Copying folder of DB to build/$os was successfully."
 echo "==> Starting Server"
-cd build
-cd $os
-case "${unameOut}" in
-	Darwin*) 	./Server;;
-	Linux*)		sudo ./Server;;
-esac
+# cd build
+# cd $os
+# case "${unameOut}" in
+# 	Darwin*) 	./Server;;
+# 	Linux*)		sudo ./Server;;
+# esac
 
 #echo "=================================="
 exit 0
