@@ -130,7 +130,7 @@ void Server::Start()
 int main(int argc, char* argv[])
 {
     if (argc == 1) {
-        Server server(argv[0]);
+        Server server(argv[1]);
         server.Start();
     }
     return 0;
