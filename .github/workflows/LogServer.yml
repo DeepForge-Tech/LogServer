@@ -22,7 +22,7 @@ jobs:
     - name: Building client
       run:  g++ -o ./build/Linux/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic
     - name: Building server
-      run:  g++ -o ./build/Linux/Server ./src/Server.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic
+      run:  g++ -o ./build/$os/Server ./src/Server.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -lsqlite3 -std=c++2a -Bstatic;;
 #   tests_linux:
 #     runs-on: ubuntu-latest
 #     steps:
