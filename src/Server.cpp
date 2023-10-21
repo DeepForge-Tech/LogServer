@@ -130,6 +130,7 @@ void Server::Start()
 int main(int argc, char* argv[])
 {
     if (argc == 1) {
+        cout << argv[1] << endl;
         Server server(argv[1]);
         server.Start();
     }
