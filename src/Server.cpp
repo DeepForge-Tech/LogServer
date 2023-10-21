@@ -32,7 +32,7 @@ void Server::CreateSocket()
 void Server::SetInformation()
 {
     servaddr.sin_family = AF_INET; // IPv4
-    servaddr.sin_addr.s_addr = inet_addr("64.226.99.105");
+    servaddr.sin_addr.s_addr = inet_addr(IP_ADDRESS.c_str());
     servaddr.sin_port = htons(PORT);
 }
 
@@ -122,14 +122,16 @@ void Server::Start()
         }
         catch (const std::exception &error)
         {
-            std::cerr << error.what() << '\n';
+            cerr << error.what() << '\n';
         }
     }
 }
 // Driver code
-int main()
+int main(int argc, char* argv[])
 {
-    Server server;
-    server.Start();
+    if (argc == 2) {
+        Server server(argv[1]);
+        server.Start();
+    }
     return 0;
 }

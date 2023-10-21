@@ -46,6 +46,7 @@ namespace UNIX
             memset(&servaddr, 0, sizeof(servaddr));
             isOpen = true;
         }
+
         void SetInformation()
         {
             // Filling server information
@@ -77,13 +78,16 @@ namespace UNIX
             /* The `sendto()` function is used to send data over a UDP socket connection. In this specific code snippet, it is sending the contents of the `data` string to the server specified by the `servaddr` structure. The parameters of the `sendto()` function are as follows: */
             sendto(sockfd, data, strlen(data), 0, (const struct sockaddr *)&servaddr, sizeof(servaddr));
         }
-        // void SEND_TEXT_MESSAGE(string message)
-        // {
-        //     /* The line `sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));` is sending a message over a UDP socket connection. */
-        //     sendto(sockfd,message.c_str(),strlen(message.c_str()),(const stuct sockaddr *)&serveraddr,sizeof(servaddr));
-        // }
+
+        void SEND_TEXT_MESSAGE(string message)
+        {
+            /* The line `sendto(client_socket, new_message, strlen(new_message), 0, (sockaddr*)&server, sizeof(sockaddr_in));` is sending a text message over a UDP socket to a specified server. */
+            sendto(sockfd, message.c_str(), strlen(message.c_str()), 0, (const struct sockaddr *)&servaddr, sizeof(servaddr));
+        }
+        
         void GetInformation()
         {
+            /* The line `n = recvfrom(sockfd, (char *)buffer, BUFFER_MAX_LENGHT, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);` is receiving data from a UDP socket connection. */
             n = recvfrom(sockfd, (char *)buffer, BUFFER_MAX_LENGHT, MSG_WAITALL, (struct sockaddr *)&servaddr, &len);
             buffer[n] = '\0';
         }

@@ -19,8 +19,10 @@ jobs:
       run: sudo add-apt-repository universe && sudo apt update && sudo apt install curl g++ gcc build-essential cmake make && sudo apt-get install libcurl4-openssl-dev libjsoncpp-dev libfmt-dev libsqlite3-dev libgtest-dev googletest google-mock libgmock-dev libtbb-dev libzip-dev zlib1g-dev
     - name: Make directories
       run: mkdir build && cd build && mkdir Linux && cd ..
-    - name: Building project
+    - name: Building client
       run:  g++ -o ./build/Linux/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic
+    - name: Building server
+      run:  g++ -o ./build/$os/Server ./src/Server.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -lsqlite3 -std=c++2a -Bstatic
 #   tests_linux:
 #     runs-on: ubuntu-latest
 #     steps:
@@ -33,18 +35,6 @@ jobs:
 #       run: g++ ./src/tests/MainTest.cpp -o ./tests/MainTest -lsqlite3 -ljsoncpp -lcurl -lgtest -lgmock -pthread -std=c++2a
 #     - name: Run tests
 #       run: cd tests && sudo ./MainTest
-  build_macOS_11:
-        runs-on: macos-11
-        steps:
-          - uses: actions/checkout@v3
-          - name: Install HomeBrew
-            run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          - name: Install libraries
-            run: brew  install jsoncpp sqlite3 sqlite-utils fmt clang-format curl googletest gcc zlib cmake
-          - name: Make directory build
-            run: mkdir build && cd build && mkdir macOS && cd ..
-          - name: Building project
-            run: clang++ -o ./build/macOS/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic
   build_macOS_12:
     runs-on: macos-12
     steps:
@@ -55,7 +45,7 @@ jobs:
         run: brew  install jsoncpp sqlite3 sqlite-utils fmt clang-format curl googletest gcc zlib cmake
       - name: Make directory build
         run: mkdir build && cd build && mkdir macOS && cd ..
-      - name: Building project
+      - name: Building client
         run: clang++ -o ./build/macOS/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic
   build_macOS_13:
     runs-on: macos-13
@@ -67,22 +57,8 @@ jobs:
         run: brew  install jsoncpp sqlite3 sqlite-utils fmt clang-format curl googletest gcc zlib cmake
       - name: Make directory build
         run: mkdir build && cd build && mkdir macOS && cd ..
-      - name: Building project
+      - name: Building client
         run: clang++ -o ./build/macOS/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic
-#   tests_macOS_11:
-#     runs-on: macos-11
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Install HomeBrew
-#       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#     - name: Install libraries
-#       run: brew  install jsoncpp sqlite3 sqlite-utils fmt clang-format curl googletest gcc zlib cmake
-#     - name: Make directory tests
-#       run: mkdir tests
-#     - name: Building tests
-#       run: clang++ ./src/tests/MainTest.cpp -o ./tests/MainTest -lsqlite3 -ljsoncpp -lcurl -lgtest -lgmock -pthread -std=c++2a
-#     - name: Run tests
-#       run: cd tests && sudo ./MainTest
 #   tests_macOS_12:
 #     runs-on: macos-12
 #     steps:
