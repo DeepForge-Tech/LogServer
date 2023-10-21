@@ -57,20 +57,6 @@ jobs:
         run: mkdir build && cd build && mkdir macOS && cd ..
       - name: Building project
         run: clang++ -o ./build/macOS/Client ./src/Client.cpp  -I ../../include  -L ../../lib/ -I ./src/include -L ./src/lib -ljsoncpp -std=c++2a -Bstatic
-#   tests_macOS_11:
-#     runs-on: macos-11
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Install HomeBrew
-#       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#     - name: Install libraries
-#       run: brew  install jsoncpp sqlite3 sqlite-utils fmt clang-format curl googletest gcc zlib cmake
-#     - name: Make directory tests
-#       run: mkdir tests
-#     - name: Building tests
-#       run: clang++ ./src/tests/MainTest.cpp -o ./tests/MainTest -lsqlite3 -ljsoncpp -lcurl -lgtest -lgmock -pthread -std=c++2a
-#     - name: Run tests
-#       run: cd tests && sudo ./MainTest
 #   tests_macOS_12:
 #     runs-on: macos-12
 #     steps:

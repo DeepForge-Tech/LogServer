@@ -14,7 +14,7 @@
 
 #define PORT 743
 #define MAX_SIZE 16384
-#define IP_ADDRESS "64.226.99.105"
+// #define IP_ADDRESS "64.226.99.105"
 using namespace std;
 
 namespace LogServer
@@ -28,6 +28,7 @@ namespace LogServer
     string ProjectDir = std::filesystem::current_path().generic_string();
     Database database;
     string DatabasePath = ProjectDir + "/DB/Logs.db";
+    string IP_ADDRESS;
 
     class Server
     {
@@ -37,8 +38,9 @@ namespace LogServer
         void SetInformation();
         void BindSocket();
         void Start();
-        Server()
+        Server(char ip_address)
         {
+            IP_ADDRESS = to_string(ip_address);
             database.open(&DatabasePath);
             cout << "Server started on " << IP_ADDRESS << ":" << PORT << endl;
         }

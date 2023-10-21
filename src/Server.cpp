@@ -127,9 +127,11 @@ void Server::Start()
     }
 }
 // Driver code
-int main()
+int main(int argc, char* argv[])
 {
-    Server server;
-    server.Start();
+    if (argc == 1) {
+        Server server(argv[0]);
+        server.Start();
+    }
     return 0;
 }
