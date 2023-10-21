@@ -38,9 +38,9 @@ namespace LogServer
         void SetInformation();
         void BindSocket();
         void Start();
-        Server(char ip_address)
+        Server(string ip_address)
         {
-            IP_ADDRESS = to_string(ip_address);
+            IP_ADDRESS = ip_address;
             database.open(&DatabasePath);
             cout << "Server started on " << IP_ADDRESS << ":" << PORT << endl;
         }

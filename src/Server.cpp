@@ -32,7 +32,7 @@ void Server::CreateSocket()
 void Server::SetInformation()
 {
     servaddr.sin_family = AF_INET; // IPv4
-    servaddr.sin_addr.s_addr = inet_addr(IP_ADDRESS);
+    servaddr.sin_addr.s_addr = inet_addr(IP_ADDRESS.c_str());
     servaddr.sin_port = htons(PORT);
 }
 
@@ -130,7 +130,7 @@ void Server::Start()
 int main(int argc, char* argv[])
 {
     if (argc == 1) {
-        Server server(argv[0]);
+        Server server(to_string(argv[0]));
         server.Start();
     }
     return 0;
