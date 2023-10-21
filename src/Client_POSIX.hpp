@@ -74,7 +74,7 @@ namespace POSIX
             sendto(client_socket, data, strlen(data), 0, (sockaddr *)&server, sizeof(sockaddr_in));
         }
 
-        void SendTextMessage(string message)
+        void SEND_TEXT_MESSAGE(string message)
         {
             /* The line `sendto(client_socket, new_message, strlen(new_message), 0, (sockaddr*)&server, sizeof(sockaddr_in));` is sending a text message over a UDP socket to a specified server. */
             sendto(client_socket, message.c_str(), strlen(message.c_str()), 0, (sockaddr*)&server, sizeof(sockaddr_in));
