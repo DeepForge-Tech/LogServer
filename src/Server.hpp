@@ -14,7 +14,7 @@
 
 #define PORT 743
 #define MAX_SIZE 16384
-// #define IP_ADDRESS "64.226.99.105"
+
 using namespace std;
 
 namespace LogServer
