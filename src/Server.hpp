@@ -19,9 +19,12 @@ using namespace std;
 
 namespace LogServer
 {
+    /* `int sockfd;` is declaring a variable `sockfd` of type `int`. This variable is used to store the file descriptor of the socket that will be created for the server. The file descriptor is a unique identifier for the socket that is used to perform various operations on the socket, such as sending and receiving data. */
     int sockfd;
     char buffer[MAX_SIZE];
+    /* The line `struct sockaddr_in servaddr, cliaddr;` is declaring two variables `servaddr` and `cliaddr` of type `struct sockaddr_in`. */
     struct sockaddr_in servaddr, cliaddr;
+    /* `socklen_t len;` is declaring a variable `len` of type `socklen_t`. */
     socklen_t len;
     int n;
     const char* SUCCESS = "Information added successfully";
