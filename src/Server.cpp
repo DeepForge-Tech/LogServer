@@ -129,7 +129,7 @@ void Server::Start()
 // Driver code
 int main(int argc, char* argv[])
 {
-    if (argc == 1) {
+    if (argc == 2) {
         cout << argv[1] << endl;
         Server server(argv[1]);
         server.Start();
