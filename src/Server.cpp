@@ -32,7 +32,7 @@ void Server::CreateSocket()
 void Server::SetInformation()
 {
     servaddr.sin_family = AF_INET; // IPv4
-    servaddr.sin_addr.s_addr = inet_addr("64.226.99.105");
+    servaddr.sin_addr.s_addr = inet_addr(IP_ADDRESS);
     servaddr.sin_port = htons(PORT);
 }
 
