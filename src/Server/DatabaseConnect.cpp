@@ -372,16 +372,3 @@ int Database::RemoveApplications(string Tables[])
     }
     return 0;
 }
-
-int Database::InsertLogInformationToTable(string NameTable,string Architecture,string OS_NAME,string Channel,string FunctionName,string LogText)
-{
-    /* The bellow code is constructing an SQL INSERT statement. It is creating a command to insert data
-    into a table named 'NameTable' in the 'main' database. The data being inserted includes values
-    for the columns 'Architecture', 'Channel', 'LogText', 'OS_NAME', and 'FunctionName'. The values
-    for these columns are being passed as variables in the code. */
-    SQL_COMMAND = "INSERT INTO 'main'.'" + NameTable + "' ('Architecture', 'Channel', 'LogText', 'OS_NAME','FunctionName') VALUES ('" + Architecture + "', '" + Channel + "', '" + LogText + "', '" + OS_NAME + "', '" + FunctionName + "');";
-    int RESULT_SQL = sqlite3_exec(db, SQL_COMMAND.c_str(), callback, NULL, NULL);
-    if (RESULT_SQL != SQLITE_OK)
-        throw runtime_error("Error in INSERT command");
-    return 0;
-}
